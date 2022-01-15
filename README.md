@@ -28,12 +28,11 @@ npm install @snazzyui/element
 
 Here's a small example that shows 90% of the API surface of the library:
 
-<p class="codepen" data-height="500" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="d216f284f4bcab8a6e2a919dd557ad75" data-preview="true" data-user="anthonybullard" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/anthonybullard/pen/d216f284f4bcab8a6e2a919dd557ad75">
+<iframe height="500" style="width: 100%;" scrolling="no" title="Snazzy Elements" src="https://codepen.io/anthonybullard/embed/preview/d216f284f4bcab8a6e2a919dd557ad75?default-tab=js%2Cresult&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/anthonybullard/pen/d216f284f4bcab8a6e2a919dd557ad75">
   Snazzy Elements</a> by Anthony Bullard (<a href="https://codepen.io/anthonybullard">@anthonybullard</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 ## Contributing
 
