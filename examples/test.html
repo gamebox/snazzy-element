@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snazzy Element Test</title>
+  </head>
+  <body>
+    <se-test-component></se-test-component>
+    <script type="module">
+      import { registerSnazzyElement, h } from '/scripts/snazzy-element.esm.js';
+
+      const NameChanged = (state, name) => ({ ...state, name });
+
+      registerSnazzyElement({
+        tagName: 'se-test-component',
+        view: (state) =>
+          h('div', {}, [
+            `Hello, ${state.name}`,
+            h(
+              'button',
+              {
+                on: {
+                  click: (e) =>
+                    state.emit('SE_TEST_COMPONENT#BUTTON_CLICKED', {}),
+                },
+              },
+              'Click'
+            ),
+          ]),
+        init: (props) => ({ name: props.name }),
+        subscriptions: (state) => [
+          [
+            (dispatch, emit) => {
+              const interval = setInterval(
+                () => emit('SE_TEST_COMPONENT#TICK'),
+                1000
+              );
+              return () => clearInterval(interval);
+            },
+            state.emit,
+          ],
+        ],
+        properties: [{ name: 'name', default: 'Foo', onChanged: NameChanged }],
+        styles: `
+  div {
+    color: red;
+  }
+  `,
+      });
+
+      window.addEventListener('SE_TEST_COMPONENT#BUTTON_CLICKED', () => {
+        console.log('Got the event!');
+      });
+
+      window.addEventListener('SE_TEST_COMPONENT#TICK', () => {
+        console.log('Got a tick!');
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+{
+  "version": "0.2.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "repository": "https://github.com/gamebox/snazzy-elements",
+  "description": "A lightweight wrapper of @snazzyui/snazzyui to create tiny custom web components.",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "web components",
+    "custom elements",
+    "ui library",
+    "vdom",
+    "hyperapp",
+    "functional",
+    "lightweight"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "build": "tsc && node ./scripts/build.mjs",
+    "prepare": "tsc && node ./scripts/build.mjs",
+    "examples": "rm -rf examples/scripts && cp -r dist examples/scripts && npx http-server examples 8088"
+  },
+  "peerDependencies": {},
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "@snazzyui/element",
+  "author": "Anthony Bullard",
+  "module": "dist/snazzy-element.esm.js",
+  "devDependencies": {
+    "esbuild": "^0.14.5",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@snazzyui/snazzyui": "0.2.0"
+  }
+}
