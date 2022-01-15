@@ -26,43 +26,57 @@ npm install @snazzyui/element
 
 ## Usage
 
-Here's a small example that shows 90% of the API surface of the library:
+Here's a small example that shows 90% of the API surface of the library (you can fork it [here](https://codepen.io/anthonybullard/pen/d216f284f4bcab8a6e2a919dd557ad75?editors=1010)):
 
-<div class="codepen" data-height="500" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="d216f284f4bcab8a6e2a919dd557ad75" data-preview="true" data-user="anthonybullard"  data-prefill='{"title":"Snazzy Elements","tags":[],"scripts":[],"stylesheets":[]}'>
-  <pre data-lang="html">&lt;se-test-component name="Name">&lt;/se-test-component></pre>
-  <pre data-lang="js">import { registerSnazzyElement, h } from "https://cdn.skypack.dev/@snazzyui/element@0.2.0";
+```js
+import { registerSnazzyElement } from 'https://cdn.skypack.dev/@snazzyui/element';
 
 const NameChanged = (state, name) => ({ ...state, name });
 
 registerSnazzyElement({
-tagName: 'se-test-component',
-view: (state) => h('div', {}, [`Hello, ${state.name}`, h('button', { on: { click: (e) => state.emit('SE_TEST_COMPONENT#BUTTON_CLICKED', {})}}, 'Click')]),
-init: (props) => ({ name: props.name }),
-subscriptions: (state) => [
-[(dispatch, emit) => {
-const interval = setInterval(() => emit('SE_TEST_COMPONENT#TICK'), 1000);
-return () => clearInterval(interval);
-}, state.emit]
-],
-properties: [
-{ name: 'name', default: 'Foo', onChanged: NameChanged }
-],
-styles: ` div { color: red; } `
+  tagName: 'se-test-component',
+  view: (state) =>
+    h('div', {}, [
+      `Hello, ${state.name}`,
+      h(
+        'button',
+        {
+          on: {
+            click: (e) => state.emit('SE_TEST_COMPONENT#BUTTON_CLICKED', {}),
+          },
+        },
+        'Click'
+      ),
+    ]),
+  init: (props) => ({ name: props.name }),
+  subscriptions: (state) => [
+    [
+      (dispatch, emit) => {
+        const interval = setInterval(
+          () => emit('SE_TEST_COMPONENT#TICK'),
+          1000
+        );
+        return () => clearInterval(interval);
+      },
+      state.emit,
+    ],
+  ],
+  properties: [{ name: 'name', default: 'Foo', onChanged: NameChanged }],
+  styles: `
+  div {
+    color: red;
+  }
+  `,
 });
 
 window.addEventListener('SE_TEST_COMPONENT#BUTTON_CLICKED', () => {
-console.log('Got the event!');
+  console.log('Got the event!');
 });
 
 window.addEventListener('SE_TEST_COMPONENT#TICK', () => {
-console.log('Got a tick!');
+  console.log('Got a tick!');
 });
-
-setTimeout(() => {
-document.querySelector('se-test-component')?.setAttribute('name', 'Tony');
-}, 3000);</pre></div>
-
-<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+```
 
 ## Contributing
 
