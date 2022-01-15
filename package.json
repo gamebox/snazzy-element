@@ -3,6 +3,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "private": false,
   "repository": "https://github.com/gamebox/snazzy-elements",
   "description": "A lightweight wrapper of @snazzyui/snazzyui to create tiny custom web components.",
   "files": [

@@ -28,55 +28,12 @@ npm install @snazzyui/element
 
 Here's a small example that shows 90% of the API surface of the library:
 
-```js
-import { registerSnazzyElement } from 'https://cdn.skypack.dev/@snazzyui/element';
-
-const NameChanged = (state, name) => ({ ...state, name });
-
-registerSnazzyElement({
-  tagName: 'se-test-component',
-  view: (state) =>
-    h('div', {}, [
-      `Hello, ${state.name}`,
-      h(
-        'button',
-        {
-          on: {
-            click: (e) => state.emit('SE_TEST_COMPONENT#BUTTON_CLICKED', {}),
-          },
-        },
-        'Click'
-      ),
-    ]),
-  init: (props) => ({ name: props.name }),
-  subscriptions: (state) => [
-    [
-      (dispatch, emit) => {
-        const interval = setInterval(
-          () => emit('SE_TEST_COMPONENT#TICK'),
-          1000
-        );
-        return () => clearInterval(interval);
-      },
-      state.emit,
-    ],
-  ],
-  properties: [{ name: 'name', default: 'Foo', onChanged: NameChanged }],
-  styles: `
-  div {
-    color: red;
-  }
-  `,
-});
-
-window.addEventListener('SE_TEST_COMPONENT#BUTTON_CLICKED', () => {
-  console.log('Got the event!');
-});
-
-window.addEventListener('SE_TEST_COMPONENT#TICK', () => {
-  console.log('Got a tick!');
-});
-```
+<p class="codepen" data-height="500" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="d216f284f4bcab8a6e2a919dd557ad75" data-preview="true" data-user="anthonybullard" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/anthonybullard/pen/d216f284f4bcab8a6e2a919dd557ad75">
+  Snazzy Elements</a> by Anthony Bullard (<a href="https://codepen.io/anthonybullard">@anthonybullard</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
 ## Contributing
 
